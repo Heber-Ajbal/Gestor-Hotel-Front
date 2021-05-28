@@ -1,0 +1,104 @@
+
+<body>
+  <app-navbar></app-navbar>
+
+  <main >
+    <div class="container" *ngIf = "_usuarioService.obtenerIdentidad()" >
+      <div class="left box-primary">
+        <img class="image" src="/assets/Perfil.png"alt="" />
+        <h3 class="username text-center">{{_usuarioService.obtenerIdentidad().nombre}}</h3>
+        <a  class="btn btn-primary btn-block"><b>Editar foto</b></a>
+      </div>
+      <div class="right tab-content">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="inputName" class="col-sm-2 control-label">Nombre</label>
+
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="inputName" placeholder="{{_usuarioService.obtenerIdentidad().nombre}}" disabled>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="inputEmail" placeholder="{{_usuarioService.obtenerIdentidad().email}}" disabled>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputName" class="col-sm-2 control-label">Telefono</label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputName" placeholder="{{_usuarioService.obtenerIdentidad().telefono}}" disabled>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btnS btn btn-danger " data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"  (click)="obtenerUsuarioId(_usuarioService.obtenerIdentidad()._id)">Eliminar Perfil</button>
+
+              <button type="submit" class="btnE btn btn-danger" data-bs-toggle="modal"
+              data-bs-target="#modalEditarUsuario" (click)="obtenerUsuarioId(_usuarioService.obtenerIdentidad()._id)">Editar Perfil</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+</body>
+
+
+
+
+<!-- MODAL EDITAR USUARIO -->
+
+<!-- Modal Editar Usuario -->
+<div class="modal fade" id="modalEditarUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="inputEmail" name="email" #email="ngModel"
+            [(ngModel)]="usuarioIDModel.email">
+          </div>
+          <div class="mb-3">
+            <label for="inputNombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="inputNombre" name="nombre" #nombre="ngModel"
+            [(ngModel)]="usuarioIDModel.nombre">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+        (click)="editarUsuario()">Editar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--MODAL ELIMINAR USUARIO-->
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">ELIMINAR PERFIL</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Esta seguro de eliminar su cuenta? al eliminar se perderan todos sus datos y no podrá recuperarlos
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="eliminarUsuario()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+

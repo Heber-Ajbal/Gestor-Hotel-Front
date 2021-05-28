@@ -1,0 +1,230 @@
+body {
+  font-family: Montserrat, sans-serif;
+
+}
+.navbar-brand {
+  background-image: url("/assets/logoNav.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 48px;
+  height: 48px;
+}
+
+.navbar-nav .nav-item:hover {
+  background-color: rgba(180, 190, 203, 0.4);
+}
+
+hr{
+  background-color:#D93452;
+  height: 5px;
+  border: none;
+  margin-top: 0px;
+  border: none;
+  margin-bottom:0px;
+}
+
+
+.main {
+  width: 15%;
+  margin-left: 82%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+
+.has-search .form-control {
+  padding-left: 2.5rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+
+}
+
+.cr{
+  display: block;
+  padding: 5px;
+  margin-top: 25px;
+  margin-left: 145px;
+  width: 999px;
+  height: 215px;
+  background:#f2f7f5
+}
+
+.imagenH{
+
+  padding: 10px;
+  border-radius: 20px;
+  margin-top: 5px;
+}
+
+.des{
+  padding: 5px 10px 1px
+}
+
+.bi-star-fill, .bi-star-half{
+  margin-left: 6px;
+  padding: 5px 2px 3px;
+  color: #dc8633
+}
+
+.btnhabi{
+  margin-left: 625px;
+  margin-top: -45px;
+  background-color: #E19751;
+  border-color: #E19751;
+  float: left;
+
+}
+
+.btnEven{
+  margin-right: 20px;
+  margin-top: -45px;
+  background-color: #E19751;
+  border-color: #E19751;
+  float: right;
+
+}
+
+.btnhabi:hover{
+  margin-left: 625px;
+  margin-top: -45px;
+  background-color: #DC822E;
+  border-color: #DC822E;
+
+}
+
+
+.agH{
+  margin-left: 100px;
+  display: flex;
+  align-items: right;
+  justify-content: right;
+  float: left;
+  margin-top:21px;
+}
+
+.card-title{
+    font-size: 25px
+
+}
+
+/*------------- PROGRESO -------------*/
+
+$gray:#f0f0f0;
+$blue:#4c91b1;
+
+$browserFontSize:16;
+
+@mixin font-size($font-size){
+    font-size:$font-size + px;
+    font-size:$font-size / $browserFontSize + rem;
+}
+
+
+h1{
+  margin:2em 0;
+  text-align:center;
+  color:$blue;
+}
+
+.progress{
+
+  width:90%;
+  margin:5em auto;
+
+	ul{
+		margin:0;
+	  	padding:0;
+	  	width: 100%;
+	  	display: table;
+	  	table-layout: fixed;
+	  	position:relative;
+  	}
+
+	li{
+		position:relative;
+		background-color:$gray;
+		display: table-cell;
+    width: auto;
+		text-align:center;
+		font-weight:700;
+		@include font-size(16);
+    color:lighten($blue,20);
+
+
+		.step{
+			position: relative;
+			display: block;
+			padding:1em;
+		}
+
+		&.current{
+				background-color:$blue;
+				color:white;
+		}
+
+		.step:before{
+			-moz-border-bottom-colors: none;
+		    -moz-border-left-colors: none;
+		    -moz-border-right-colors: none;
+		    -moz-border-top-colors: none;
+		    background: none repeat scroll 0 0 #F0F0F0;
+		    border-color: #FFFFFF #FFFFFF -moz-use-text-color -moz-use-text-color;
+		    border-color:white;
+		    border-image: none;
+		    border-radius: 0 3px 0 3px;
+		    border-style: solid solid none none;
+		    border-width: 4px 4px medium medium;
+		    content: "";
+		    display: block;
+		    height: 38px;
+		    left: auto;
+		    position: absolute;
+		    right: -20px;
+		    top: 6px;
+		    -moz-transform: rotate(45deg);
+    		-webkit-transform: rotate(45deg);
+    		-o-transform: rotate(45deg);
+    		transform: rotate(45deg);
+		    width: 37px;
+		    z-index: 1;
+		}
+	}
+
+}
+
+.progress li.current .step:before {
+    background: none repeat scroll 0 0 $blue;
+}
+
+.acccionesB{
+
+  margin-top: -15px;
+  margin-right: -95px;
+  float:right;
+  min-width: 10px;
+  min-height: 15px;
+
+}
+
+.btnSet{
+  background: #585C89;
+}
+
+.iconSet{
+  color:white;
+}
+
+.btnA{
+  margin-top: -20px;
+}

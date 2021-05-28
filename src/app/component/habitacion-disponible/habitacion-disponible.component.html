@@ -1,0 +1,62 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/AdminHome"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-md-auto gap-2">
+
+
+        <li class="nav-item dropdown rounded">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"><i
+              class="bi bi-person-fill me-2" style="font-size: 1.2rem"></i></a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/Perfil">Ver Perfil</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Cerrar Sesion</a></li>
+          </ul>
+        </li>
+      </ul>
+      <hr>
+    </div>
+  </div>
+
+</nav>
+<hr>
+
+<!-- CONTENIDO-->
+<body>
+
+  <!-- Insertar Aquí contenido -->
+  <div class="contenedor">
+    <div class="titulo">
+      <div class="shape right-skew">
+        <i class="fas fa-laptop"></i>
+        <h2>Habitaciones </h2>
+      </div>
+    </div>
+    <div class="slider carousel">
+      <div class="producto item" *ngFor="let habits of disponibilidad">
+        <div class="contenedor-imagen">
+          <a  class="link"></a>
+          <img src="/assets/habitaH.jpg">
+          <img src="/assets/habitaH.jpg" class="img-hover">
+        </div>
+        <div class="datos">
+          <div class="starrr">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          </div>
+          <small><a>{{habits.estado}}</a></small>
+          <h3><a>{{habits.tipodeHabitacion}}</a></h3>
+          <small>Habitaciones Disponibles: {{habits.cantidad}}</small>
+          <small><a>Habitaciones Reservadas: {{habits.stockReservado}}</a></small>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,27 @@
+<body>
+
+
+<app-navbar> </app-navbar>
+
+<div class="cards">
+
+  <div class="card"  *ngFor ="let res of eventoModel">
+    <div class="card__image-holder">
+      <img class="card__image" src="/assets/evento.jpg">
+    </div>
+    <div class="card-title">
+        <span class="left"></span>
+        <span class="right"></span>
+      <h2>
+          {{res.nombre}}
+          <small> Fecha: {{res.fecha}}</small>
+      </h2>
+    </div>
+  </div>
+
+
+
+</div>
+
+</body>
+

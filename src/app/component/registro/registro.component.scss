@@ -1,0 +1,83 @@
+
+body {
+  font-family: 'Spartan',sans-serif;
+  font-weight: 300;
+  color: #ffff;
+
+}
+
+.form-control{
+  background-color: #1e2126;
+  color: #ffff;
+  min-height: 3.125rem;
+  line-height: initial;
+}
+
+
+.bg{
+  background-color: #2d2f46;
+  width: 100%;
+  height: auto;
+}
+
+.bg-dark {
+  background-color:#16191c
+}
+
+.btn1{
+  min-height: 3.125rem;
+  line-height:initial;
+}
+
+.btng{
+  margin-right: 5px;
+  color: #ffff;
+  border-color: #ffff;
+}
+
+
+
+.btnf{
+  margin-left: 5px;
+  color: #ffff;
+  border-color: #ffff;
+}
+
+.bi{
+  margin-right: 5px;
+  color: #ffff;
+}
+
+.text{
+  color: #DC8633;
+  font-weight: bold;
+}
+
+
+.imglogo{
+  vertical-align: middle;
+  width: 400px;
+  height: 80px;
+  margin-top: 120px;
+  margin-left: 125px;
+}
+
+.imglog{
+  margin-left: 125px;
+}
+
+.img-1{
+  background-image: url(/assets/login2.jpg);
+  background-size: cover;
+  background-position:center;
+
+}
+
+.img-2{
+  background-image: url(/assets/login3.jpg);
+  background-size: cover;
+  background-position:center;
+
+}
+
+

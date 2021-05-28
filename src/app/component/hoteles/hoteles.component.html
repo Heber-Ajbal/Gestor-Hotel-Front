@@ -1,0 +1,41 @@
+<body>
+
+
+
+  <app-navbar></app-navbar>
+
+
+  <div class="main">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="buscar hoteles" name="filtrar" [(ngModel)]="search"
+        name="search">
+      <div class="input-group-append">
+        <button class="btn btn-secondary" type="button">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!--  CARTAS PARA ALMACENAR LOS HOTELES-->
+  <div class="cr card mb-4 " style="max-width: 1000px;" *ngFor="let hot of hotelList | filtro: search">
+    <div class="row g-0">
+      <div class="col-md-3">
+        <img class="imagenH img-responsive" src="/assets/login1.jpg" weight="100px" height="200px">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body ">
+          <h5 class="card-title text-center">{{hot.nombre}}</h5>
+          <p class="des card-text">{{hot.descripcion}}</p>
+          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+            class="bi bi-star-half"></i>
+          <p class="des card-text"><small class="text-muted">{{hot.direccion}}</small></p>
+          <button type="button" class="btnhabi btn btn-warning"
+            [routerLink]="['/habitaciones', hot._id]">Reservar</button>
+          <button type="button" class="btnEven btn btn-warning " [routerLink]="['/eventos', hot._id]">Eventos</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>

@@ -1,0 +1,80 @@
+
+.main {
+  width: 15%;
+  margin-left: 82%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+
+.has-search .form-control {
+  padding-left: 2.5rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
+
+.cr{
+  display: block;
+  padding: 5px;
+  margin-top: 25px;
+  margin-left: 145px;
+  width: 999px;
+  height: 215px;
+  background:#f2f7f5;
+}
+
+.imagenH{
+  border-radius: 10px;
+  padding: 5px
+}
+
+.des{
+  padding: 5px 10px 1px
+}
+
+.bi-star-fill, .bi-star-half{
+  margin-left: 6px;
+  padding: 5px 2px 3px;
+  color: #dc8633
+}
+
+.btnhabi{
+  margin-left: 625px;
+  margin-top: -45px;
+  background-color: #E19751;
+  border-color: #E19751;
+  float: left;
+
+}
+
+.btnEven{
+  margin-right: 20px;
+  margin-top: -45px;
+  background-color: #E19751;
+  border-color: #E19751;
+  float: right;
+
+}
+
+.btnhabi:hover{
+  margin-left: 625px;
+  margin-top: -45px;
+  background-color: #DC822E;
+  border-color: #DC822E;
+
+}
+
+.card-title{
+  font-size: 25px
+
+}

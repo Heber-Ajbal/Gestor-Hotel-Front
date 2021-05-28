@@ -1,0 +1,113 @@
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/AdminHome"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-md-auto gap-2">
+
+
+          <li class="nav-item dropdown rounded">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"><i
+                class="bi bi-person-fill me-2" style="font-size: 1.2rem"></i></a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="/Perfil">Ver Perfil</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Cerrar Sesion</a></li>
+            </ul>
+          </li>
+        </ul>
+        <hr>
+      </div>
+    </div>
+
+  </nav>
+  <hr>
+  <br><br>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="titulo ">
+        <a class="regresar" href="/Reservacion" > <span> <i class="bi bi-arrow-left-circle-fill"> Regresar </i></span></a>
+          <h1 class="txtF text-center">FACTURA</h1>
+          <img class="imgFac" src="/assets/fact.png" width="300" height="180">
+        </div>
+
+        <br><br>
+        <div id="app" class="col-11">
+          <div class="row fact-info mt-3" *ngIf=" factura">
+            <div class="col-3">
+              <h5>Facturar a</h5>
+              <p class="tex">
+                {{ factura.usuario.nombre}}
+              </p>
+            </div>
+            <div class="col-3">
+              <h5>Enviar a</h5>
+              <p class="tex">
+                {{ factura.usuario.email}}
+              </p>
+            </div>
+            <div class="col-3">
+              <h5>N° de factura</h5>
+              <h5 class="fec">Fecha</h5>
+            </div>
+            <div class="col-3">
+              <h5>{{factura._id}}</h5>
+              <p class="tex">{{factura.reservacion.fechaSalida}}</p>
+            </div>
+          </div>
+
+          <div class="row my-5" *ngIf="factura">
+            <table class="table table-borderless factura">
+              <thead>
+                <tr>
+                  <th>Cant.</th>
+                  <th>Descripcion</th>
+                  <th>Precio Unitario</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{factura.reservacion.cantidad}}</td>
+                  <td>{{factura.habitacioneReservada.tipodeHabitacion}}</td>
+                  <td>${{factura.precioHabitacion}}</td>
+                </tr>
+
+                <tr *ngFor="let ser of factura.servicios ">
+
+                  <td>1</td>
+                  <td>{{ser.nombre}}</td>
+                  <td>${{ser.precio}}</td>
+
+                </tr>
+
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th>Total Factura</th>
+                  <th>${{factura.total}}</th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</body>
+<!--FACTURA-->

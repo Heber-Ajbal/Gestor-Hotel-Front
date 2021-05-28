@@ -1,0 +1,46 @@
+
+<body class="bg">
+  <section>
+    <div class="row g-0">
+      <div class="col-lg-7 d-none d-lg-block">
+        <div class="px-lg-5 pt-lg-4 pb-lg-3 p-4 w-100">
+          <img src="/assets/logo.png" class="imglogo img-fluid ">
+          <img src="/assets/log.png" class="imglog img-fluid ">
+        </div>
+      </div>
+      <div class="col-lg-5 d-flex flex-column align-item-end min-vh-100 mb-auto">
+        <div class="px-lg-5 py-lg-4 p-4 w-100 align-self-center">
+          <h1 class="font-weight-bold mb-4 text-center">Registrate </h1>
+
+          <!-- Registro-->
+          <form class="mb-4">
+            <div class="mb-4 ">
+              <label for="exampleInputEmail1" class="form-label font-weight-bold ">Nombre </label>
+              <input type="text" class="form-control  border-0 input-group" placeholder="Nombre"
+               id="InputNombre" name="nombre" #nombre="ngModel" [(ngModel)]="usuarioModel.nombre">
+            </div>
+            <div class="mb-4 ">
+              <label for="exampleInputEmail1" class="form-label font-weight-bold ">Email </label>
+              <input type="email" class="form-control  border-0 input-group" placeholder="Email@ejemplo.com"
+               id="exampleInputEmail1" name="email" #email="ngModel" [(ngModel)]="usuarioModel.email">
+            </div>
+            <div class="mb-4">
+              <label for="exampleInputPassword1" class="form-label font-weight-bold">Contraseña</label>
+               <input type="password" class="form-control  border-0"  placeholder="Ingresa tu contraseña" id="exampleInputPassword1"
+               name="password" #password="ngModel" [(ngModel)]="usuarioModel.password">
+            </div>
+            <button type="submit" class="btn1 btn-primary w-100" (click)="registrar()">Registrar</button>
+          </form>
+
+          <!------------------------------------------------------------>
+        </div>
+        <div class="text-center px-lg-4 pt-lg-3 pb-lg-4 p-4 weight-100 mt-auto mb-5">
+          <p class="lgi d-inline-block ">¿Ya tienes cuenta?</p>
+           <a class="text  text-decoration-none font-weight-bold" href="/Login" > Inicia Sesion</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</body>
+

@@ -1,0 +1,83 @@
+body{
+  background:#f2f7f5;
+}
+
+.navbar-brand {
+  background-image: url("/assets/logoNav.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 48px;
+  height: 48px;
+}
+
+.navbar-nav .nav-item:hover {
+  background-color: rgba(180, 190, 203, 0.4);
+}
+
+hr{
+  background-color:#D93452;
+  height: 5px;
+  border: none;
+  margin-top: 0px;
+  border: none;
+  margin-bottom:0px;
+}
+
+//FACTURA
+.factura {
+  table-layout: fixed;
+  margin-left: 25px;
+}
+
+.tex{
+  margin-left:25px
+}
+
+
+.fact-info > div > h5 {
+  font-weight: bold;
+  margin-left: 25px;
+  margin-top: 15px;
+}
+
+
+
+.factura > thead {
+  border-bottom: 3px solid #000;
+}
+
+.factura > thead > tr , .factura > tbod > tr > td:nth-child(2) {
+  width: 100%;
+}
+
+.factura > thead > tr >  {
+  text-align: center;
+}
+
+.factura > tbody > tr > td:nth-child(n+3) {
+  text-align: center;
+}
+
+.factura >  tr > th, .factura > tfoot > tr  {
+  font-size: 24px;
+  text-align: right;
+}
+
+.cond {
+  border-top: solid 2px #000;
+}
+
+
+
+.imgFac{
+  margin-top: -130px;
+  margin-right: -85px;
+  float: right;
+}
+
+.regresar{
+  margin-left: -60px;
+  text-decoration: none;
+  color: #2D2F46;
+}

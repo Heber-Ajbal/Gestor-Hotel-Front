@@ -1,0 +1,38 @@
+<app-navbar></app-navbar>
+
+<!--     HABITACIONES     -->
+<body>
+
+  <!-- Insertar Aquí contenido -->
+  <div class="contenedor">
+    <div class="titulo">
+      <div class="shape right-skew">
+        <i class="fas fa-laptop"></i>
+        <h2>Habitaciones </h2>
+      </div>
+    </div>
+    <div class="slider carousel">
+      <div class="producto item" *ngFor="let habits of habitacionModel">
+        <div class="contenedor-imagen">
+          <a  class="link"></a>
+          <img src="/assets/habitaH.jpg">
+        </div>
+        <div class="datos">
+          <div class="starrr">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          </div>
+          <h3><a>{{habits.tipodeHabitacion}}</a></h3>
+          <small>Habitaciones Disponibles: {{habits.cantidad}}</small>
+        </div>
+        <div class="precios ">
+          <div class="internet">
+            <small>Precio</small>
+            <span>${{habits.precio}}</span>
+          </div>
+        </div>
+        <a  class="btn-carrito" [routerLink]="['/ReservarHabitacion',habits._id]"> Reservar </a>
+      </div>
+    </div>
+  </div>
+</body>
+

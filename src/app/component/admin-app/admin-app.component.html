@@ -1,0 +1,480 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="AdminAp"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-md-auto gap-2">
+        <li class="nav-item rounded">
+          <a class="nav-link" href="/AdminAp"><i class="bi bi-journal-text me-2"></i>Reportes</a>
+        </li>
+        <li class="nav-item rounded">
+          <a class="nav-link" href="/UsuariosRe"><i class="bi  bi-people-fill me-2"></i>Usuarios Registrados</a>
+        </li>
+        <li class="nav-item rounded">
+          <a class="nav-link" href="/Estadisticas"><i class="bi  bi-bar-chart me-2"></i>Estadisticas</a>
+        </li>
+        <li class="nav-item dropdown rounded">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"><i
+              class="bi bi-person-fill me-2" style="font-size: 1.2rem"></i></a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/PerfilAdmin">Ver Perfil</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Cerrar Sesion</a></li>
+          </ul>
+        </li>
+      </ul>
+      <hr>
+    </div>
+  </div>
+
+</nav>
+<hr>
+
+<body>
+<!-- MOSTRAR LOS REPORTES DE LOS HOTELES-->
+
+<div class="agH d-grid gap-2 d-md-block">
+  <button class="btnA btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalToggle">
+    <i class="bi bi-plus-square"></i>
+    Agregar Hotel</button>
+</div>
+
+<div class="main">
+
+  <div class="input-group">
+    <input type="search" class="form-control" placeholder="buscar hoteles" name="filtrar" [(ngModel)]="search"
+      name="search">
+    <div class="input-group-append">
+      <button class="btn btn-secondary" type="button">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<div class="cr card mb-4 " style="max-width: 1000px;" *ngFor="let hot of hotelList | filtro: search">
+  <div class="row g-0">
+    <div class="col-md-3">
+
+      <img class="imagenH img-responsive" src="/assets/Hotel.jpg" weight="80px" height="190px">
+
+    </div>
+    <div class="col-md-8">
+      <div class="card-body ">
+        <div class="acccionesB dropdown">
+          <button  type="button" class="btnSet btn btn-light btn-sm" id="dropdownSettings"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="iconSet bi bi-sliders"></i>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownSettings">
+            <li><a data-bs-toggle="modal" data-bs-target="#EditarHabitacion"
+               (click)="(obtenerHotelID(hot._id))" class="dropdown-item">Editar</a></li>
+            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#EliminarHotel"
+              (click)="(obtenerHotelID(hot._id))">Eliminar</a></li>
+            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#AddHabitacion"
+              (click)="(obtenerHotelID(hot._id))">Agregar Habitacion</a></li>
+            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#AddServicio"
+              (click)="(obtenerHotelID(hot._id))">Agregar Servicio</a></li>
+            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#AddEvento"
+              (click)="(obtenerHotelID(hot._id))">Agregar Evento</a></li>
+          </ul>
+        </div>
+        <h5 class="card-title text-center">{{hot.nombre}}</h5>
+        <p class="des card-text">{{hot.descripcion}}</p>
+        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+          class="bi bi-star-half"></i>
+        <p class="des card-text"><small class="text-muted">{{hot.direccion}}</small></p>
+        <button type="button" class="btnhabi btn btn-warning" [routerLink]="['/Reporte', hot._id]">Reporte</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+<!--AGREGAR HOTEL, HABITACION, ADMINISTRADOR, EVENTOS Y SERVICIOS-->
+<div class="modal fade" id="exampleModalToggle" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+  aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel">AGREGAR HOTEL</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <!--AGREGAR HOTEL-->
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="inputTitulo" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="inputTitulo" name="nombre" #nombre="ngModel"
+              [(ngModel)]="hotelModel.nombre" required>
+          </div>
+          <div class="mb-3">
+            <label for="inputDescripcion" class="form-label">Descripcion</label>
+            <input type="text" class="form-control" id="inputDescripcion" name="descripcion" #descripcion="ngModel"
+              [(ngModel)]="hotelModel.descripcion">
+          </div>
+          <div class="mb-3">
+            <label for="inputDescripcion" class="form-label">Direccion</label>
+            <input type="text" class="form-control" id="inputDescripcion" name="direccion" #direccion="ngModel"
+              [(ngModel)]="hotelModel.direccion">
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+
+        <a href="/AdminAp"><button type="button" class="btn btn-secondary">Cancelar</button></a>
+        <button class="btn btn-primary" id="validar" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"
+          (click)="agregarHoteles()">Continuar</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--AGREGAR ADMINISTRADOR -->
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+  tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel2">Agregar Administrador</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <!--FORMULARIO-->
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="inputTitulo" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="inputTitulo" name="nombre" #nombre="ngModel"
+                [(ngModel)]="adminModel.nombre" required>
+            </div>
+            <div class="mb-3">
+              <label for="inputDescripcion" class="form-label">Correo</label>
+              <input type="email" class="form-control" id="inputDescripcion" name="email" #email="ngModel"
+                [(ngModel)]="adminModel.email">
+            </div>
+            <div class="mb-3">
+              <label for="inputDescripcion" class="form-label">Password</label>
+              <input type="password" class="form-control" id="inputDescripcion" name="password" #password="ngModel"
+                [(ngModel)]="adminModel.password">
+            </div>
+          </form>
+        </div>
+        <!--FORMULARIO-->
+      </div>
+      <div class="modal-footer">
+        <a href="/AdminAp"><button type="button" class="btn btn-secondary">Continuar despues</button></a>
+        <button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal"
+          (click)="agregaradminHotel()">Continuar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--AGREGAR HABITACION-->
+<div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
+  tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel2">Agregar Habitacion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="inputTitulo" class="form-label">Tipo de Habitacion</label>
+            <input type="text" class="form-control" id="inputTitulo" name="tipodeHabitacion" #tipodeHabitacion="ngModel"
+              [(ngModel)]="habitacionModel.tipodeHabitacion">
+          </div>
+          <div class="mb-3">
+            <label for="inputDescripcion" class="form-label">Cantidad de Habitaciones</label>
+            <input type="number" class="form-control" id="inputDescripcion" name="cantidad" #cantidad="ngModel"
+              [(ngModel)]="habitacionModel.cantidad">
+          </div>
+          <div class="mb-3">
+            <label for="inputDescripcion" class="form-label">Precio</label>
+            <input type="number" class="form-control" id="inputDescripcion" name="precio" #precio="ngModel"
+              [(ngModel)]="habitacionModel.precio">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="/AdminAp"><button type="button" class="btn btn-secondary">Continuar despues</button></a>
+        <button class="btn btn-primary" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal"
+          (click)="agregarHabitacion()">Continuar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--AGREGAR SERVICIOS-->
+<div class="modal fade" id="exampleModalToggle4" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
+  tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel2">Agregar Servicio</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <!--FORMULARIO-->
+
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="inputTitulo" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="inputTitulo" name="nombre" #nombre="ngModel"
+                [(ngModel)]="servicioModel.nombre" required>
+            </div>
+            <div class="mb-3">
+              <label for="inputDescripcion" class="form-label">Precio</label>
+              <input type="number" class="form-control" id="inputDescripcion" name="descripcion" #descripcion="ngModel"
+                [(ngModel)]="servicioModel.precio">
+            </div>
+          </form>
+        </div>
+        <!-- FORMULARIO-->
+
+      </div>
+      <div class="modal-footer">
+        <a href="/AdminAp"><button type="button" class="btn btn-secondary">Continuar despues</button></a>
+        <button class="btn btn-primary" data-bs-target="#exampleModalToggle5" data-bs-toggle="modal"
+          (click)="agregarServicio()">Continuar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--AGREGAR EVENTOS-->
+<div class="modal fade" id="exampleModalToggle5" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
+  tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel2">Agregar Eventos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <!--FORMULARIO-->
+
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="inputTitulo" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="inputTitulo" name="nombre" #nombre="ngModel"
+                [(ngModel)]="eventoModel.nombre" required>
+            </div>
+            <div class="mb-3">
+              <label for="inputTitulo" class="form-label">Tipo evento</label>
+              <input type="text" class="form-control" id="inputTitulo" name="tipodeEvento" #tipodeEvento="ngModel"
+                [(ngModel)]="eventoModel.tipoEvento" required>
+            </div>
+            <div class="mb-3">
+              <label for="inputDescripcion" class="form-label">Fecha Evento</label>
+              <input type="date" class="form-control" id="inputDescripcion" name="descripcion" #descripcion="ngModel"
+                [(ngModel)]="eventoModel.fecha">
+            </div>
+          </form>
+        </div>
+        <!--FORMULARIO-->
+
+      </div>
+      <div class="modal-footer">
+        <a href="/AdminAp"><button type="button" class="btn btn-secondary">Continuar despues</button></a>
+        <a href="/AdminAp"><button class="btn btn-primary" data-bs-toggle="modal"
+         data-bs-dismiss="modal" (click)="agregarEventoH()">Finalizar</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- MODAL Editar HABITACIONES -->
+
+<!--AGREGAR HABITACION-->
+<div class="modal fade" id="EditarHabitacion" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
+  tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" >
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel2">Editar Hotel</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="inputTitulo" class="form-label">Tipo de Habitacion</label>
+            <input type="text" class="form-control" id="inputTitulo" name="nombre" #nombre="ngModel"
+              [(ngModel)]="hotelModel.nombre">
+          </div>
+          <div class="mb-3">
+            <label for="inputDescripcion" class="form-label">Cantidad de Habitaciones</label>
+            <input type="text" class="form-control" id="inputDescripcion" name="descripcion" #descripcion="ngModel"
+              [(ngModel)]="hotelModel.descripcion">
+          </div>
+          <div class="mb-3">
+            <label for="inputDescripcion" class="form-label">Precio</label>
+            <input type="text" class="form-control" id="inputDescripcion" name="direccion" #direccion="ngModel"
+              [(ngModel)]="hotelModel.direccion">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary"  data-bs-toggle="modal"  data-bs-dismiss="modal"
+          (click)="editarHotel()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--ELIMINAR HOTEL-->
+
+<div class="modal fade" id="EliminarHotel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">ELIMINAR PERFIL</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Esta seguro de eliminar el hotel? al eliminar se perderan todos sus datos y no podrá recuperarlos
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="eliminarHotel()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--AGREGAR HABITACION-->
+<div class="modal fade" id="AddHabitacion" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
+  tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel2">Agregar Habitacion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="inputTitulo" class="form-label">Tipo de Habitacion</label>
+            <input type="text" class="form-control" id="inputTitulo" name="tipodeHabitacion" #tipodeHabitacion="ngModel"
+              [(ngModel)]="habitacionModel.tipodeHabitacion">
+          </div>
+          <div class="mb-3">
+            <label for="inputDescripcion" class="form-label">Cantidad de Habitaciones</label>
+            <input type="number" class="form-control" id="inputDescripcion" name="cantidad" #cantidad="ngModel"
+              [(ngModel)]="habitacionModel.cantidad">
+          </div>
+          <div class="mb-3">
+            <label for="inputDescripcion" class="form-label">Precio</label>
+            <input type="number" class="form-control" id="inputDescripcion" name="precio" #precio="ngModel"
+              [(ngModel)]="habitacionModel.precio">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary"  data-bs-toggle="modal"  data-bs-dismiss="modal"
+          (click)="agregarHabi()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AGREGAR SERVICIO-->
+<div class="modal fade" id="AddServicio" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
+  tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel2">Agregar Servicio</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <!--FORMULARIO-->
+
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="inputTitulo" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="inputTitulo" name="nombre" #nombre="ngModel"
+                [(ngModel)]="servicioModel.nombre" required>
+            </div>
+            <div class="mb-3">
+              <label for="inputDescripcion" class="form-label">Precio</label>
+              <input type="number" class="form-control" id="inputDescripcion" name="descripcion" #descripcion="ngModel"
+                [(ngModel)]="servicioModel.precio">
+            </div>
+          </form>
+        </div>
+        <!-- FORMULARIO-->
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary"  data-bs-toggle="modal"
+          (click)="agregarSer()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--AGREGAR Evento-->
+<div class="modal fade" id="AddEvento" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
+  tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel2">Agregar Eventos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <!--FORMULARIO-->
+
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="inputTitulo" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="inputTitulo" name="nombre" #nombre="ngModel"
+                [(ngModel)]="eventoModel.nombre" required>
+            </div>
+            <div class="mb-3">
+              <label for="inputTitulo" class="form-label">Tipo evento</label>
+              <input type="text" class="form-control" id="inputTitulo" name="tipodeEvento" #tipodeEvento="ngModel"
+                [(ngModel)]="eventoModel.tipoEvento" required>
+            </div>
+            <div class="mb-3">
+              <label for="inputDescripcion" class="form-label">Fecha Evento</label>
+              <input type="date" class="form-control" id="inputDescripcion" name="descripcion" #descripcion="ngModel"
+                [(ngModel)]="eventoModel.fecha">
+            </div>
+          </form>
+        </div>
+        <!--FORMULARIO-->
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-dismiss="modal" (click)="agregarEv()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

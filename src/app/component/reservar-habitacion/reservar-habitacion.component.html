@@ -1,0 +1,72 @@
+<link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css">
+<div class="contenedor" *ngFor=" let habits of habitacionGetID">
+  <h1 class="logo"><span class="nombre-empresa"></span> Reservar Habitacion</h1>
+  <div class="wrapper animated bounceInLeft">
+    <div class="info-empresa">
+      <h3>{{habits.tipodeHabitacion}}</h3>
+      <ul class="servicios">
+        <li><Span>Precio: </Span><i class="bi bi-currency-dollar"></i>{{habits.precio}}</li>
+        <img class="imgHa img-responsive" src="/assets/habitacion.jpg" width="350" height="220">
+      </ul>
+    </div>
+    <div class="contacto">
+      <form class="formulario1">
+        <p>
+          <label>Fecha Llegada</label>
+          <input type="date" name="fechaEntrada" #fechaEntrada="ngModel" [(ngModel)]="reservacionModel.fechaEntrada" required>
+
+        </p>
+
+        <p>
+          <label>Fecha Salida</label>
+          <input type="date" name="fechaSalida" #fechaSalida="ngModel" [(ngModel)]="reservacionModel.fechaSalida">
+
+        </p>
+        <p>
+          <label>Cantidad de Habitaciones</label>
+          <input type="number" name="email" name="cantidad" #cantidad="ngModel" [(ngModel)]="reservacionModel.cantidad"
+            required>
+        </p>
+
+      </form>
+
+      <button type="button" class="btnG btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button"
+        aria-expanded="false" aria-controls="collapseExample" (click)="obtenerServicio(habits.habitacionHotel)">incluir
+        Servicio</button>
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+          <form class="formulario">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Servicio</label>
+
+              <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                <select class="form-select" id="inputGroupSelect01">
+                  <option selected name="nombre" #nombre="ngModel" [(ngModel)]="modeloServicio.nombre" disabled>
+                    Servicios...</option>
+                  <option disabled value="1" name="nombre" #nombre="ngModel" [(ngModel)]="modeloServicio.nombre"
+                    *ngFor="let serS of serviciosR">{{serS.nombre}}</option>
+
+                </select>
+              </div>
+
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nombre"
+                #nombre="ngModel" [(ngModel)]="modeloServicio.nombre">
+              <div id="emailHelp" class="form-text">Ingrese el nombre del servicio, si no desea algun servicio presione
+                nuevamente el boton</div>
+              <div id="emailHelp" class="form-text">Luego de ingresar su reservacion agregue sus servicios</div>
+              <button type="button" class="btn btn-primary " (click)="agregarServicioRes()">Guardar</button>
+
+            </div>
+          </form>
+        </div>
+      </div>
+      <button [routerLink]="['/hoteles']" type="button" class=" btnG2 btn btn-primary">Cancelar</button>
+      <button type="button" class="btnG3  btn btn-primary"
+        (click)="reservarHabitacion(idRutaHabitacion)">Guardar</button>
+
+    </div>
+  </div>
+</div>
+
+
